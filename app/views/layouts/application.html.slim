@@ -1,7 +1,7 @@
 doctype html
 html
 head
-  title Persons
+  title Fappr
   meta name="viewport" content="width=device-width, initial-scale=1.0"
   = stylesheet_link_tag    "application", media: "all"
   = javascript_include_tag "vendor/modernizr"
@@ -17,7 +17,7 @@ body
         li style="display: none"
           = link_to "Fetch friends", fetch_friends_people_path
         li
-          = link_to "Top 10", top_people_path
+          = link_to "Top 30", top_people_path
       ul.right
         - if user_signed_in?
           li.has-dropdown
