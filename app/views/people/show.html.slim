@@ -13,7 +13,7 @@ br
     .row
       .small-8.large-centered.columns.text-centered
         br
-        img.face style="max-height: 400px;" src=@person.image_path
+        = link_to image_tag(@person.image_path, style: 'max-height: 400px;'), "https://facebook.com/#{@person.uid}"
     .row
       .small-8.large-centered.columns.text-centered
         #rating data-rating=Rating.where(person_uid: @person.uid, user_id: current_user.id).first.try(:number) data-url=vote_person_path(id: @person.uid, format: :json) data-star-off=image_path("star-off.png") data-star-on=image_path("star-on.png") data-enabled=false data-star-half=image_path("star-half.png")
