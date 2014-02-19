@@ -3,7 +3,7 @@ module ApplicationHelper
   def similar_people(uid)
     begin
       PREDICTIONIO.identify(current_user.uid)
-      Person.where(uid: PREDICTIONIO.get_itemsim_top_n("similarity", uid, 5))
+      Person.where(uid: PREDICTIONIO.get_itemsim_top_n("similarity", uid, 25))
     rescue PredictionIO::Client::ItemSimNotFoundError => e
       []
     end
