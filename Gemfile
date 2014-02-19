@@ -1,4 +1,4 @@
-source 'http://192.168.1.12:9292'
+source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
