@@ -1,0 +1,18 @@
+br
+br
+br
+- if @person
+  .row
+    .small-8.large-centered.columns.text-centered
+      = @person.uid
+      br
+      img.face style="max-height: 400px;" src=@person.image_path
+  .row
+    .small-8.large-centered.columns.text-centered
+      #rating data-url=vote_person_path(id: @person.uid, format: :json) data-star-off=image_path("star-off.png") data-star-on=image_path("star-on.png") data-enabled=false data-star-half=image_path("star-half.png")
+- else
+  .row
+    .small-8.large-centered.columns.text-centered
+      .alert-box.alert
+        p Ooops! You checked them all out!
+        p Come back later to see if we have some more pretty faces for you.

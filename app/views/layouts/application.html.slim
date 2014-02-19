@@ -1,0 +1,36 @@
+doctype html
+html
+head
+  title Persons
+  meta name="viewport" content="width=device-width, initial-scale=1.0"
+  = stylesheet_link_tag    "application", media: "all"
+  = javascript_include_tag "vendor/modernizr"
+  = csrf_meta_tags
+body
+  nav.top-bar data-topbar=true
+    ul.title-area
+      li.name
+        h1
+          = link_to "Recommender", root_path
+    section.top-bar-section
+      ul.left
+        li style="display: none"
+          = link_to "Fetch friends", fetch_friends_people_path
+        li
+          = link_to "Get lucky", people_path, class: 'button large success'
+
+      ul.right
+        - if user_signed_in?
+          li.has-dropdown
+            a href="javascript:void(0)"
+              = image_tag "http://graph.facebook.com/#{current_user.uid}/picture?type=square", class: 'user-avatar'
+              = current_user.first_name
+            ul.dropdown
+              li = link_to "Log out", destroy_user_session_path, method: :delete
+        - else
+          li
+            = link_to "Sign in using Facebook", user_omniauth_authorize_path(:facebook)
+  - if flash[:notice]
+    .alert-box.success = flash[:notice]
+  = yield
+  = javascript_include_tag "application"
