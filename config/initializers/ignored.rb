@@ -1,0 +1,1 @@
+IGNORED_UIDS = ENV["IGNORED_UIDS"] ? ENV["IGNORED_UIDS"].split(",") : []

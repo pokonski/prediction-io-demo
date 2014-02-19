@@ -4,16 +4,13 @@ class PeopleController < ApplicationController
   before_filter :identify_user
 
   def random
-    ignored = ENV["IGNORED_UIDS"]
-    ignored = ignored ? ignored.split(",") : []
-
     desired_sex = {"male" => "female", "female" => "male"}
     @person = Person
       .where("not exists (SELECT 1 FROM ratings r WHERE r.person_uid = people.uid AND r.user_id = #{current_user.id})")
       .where(sex: desired_sex[current_user.sex]).order("RANDOM()")
 
-    if ignored.any?
-      @person = @person.where("uid NOT IN (?)", ignored)
+    if IGNORED_UIDS.any?
+      @person = @person.where("uid NOT IN (?)", IGNORED_UIDS)
     end
 
     @person = @person.first
@@ -24,7 +21,7 @@ class PeopleController < ApplicationController
   end
 
   def show
-
+    PREDICTIONIO.arecord_action_on_item("view", @person.uid)
   end
 
   def vote
