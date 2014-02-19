@@ -1,0 +1,8 @@
+.row
+  .small-12.columns.text-centered
+    h3 Your ratings
+    br
+    ul.small-block-grid-5
+      - @people.each do |person|
+        li
+          = link_to image_tag(person.image_path), person_path(person.uid)

@@ -18,6 +18,9 @@ body
           = link_to "Fetch friends", fetch_friends_people_path
         li
           = link_to "Top 30", top_people_path
+        - if user_signed_in?
+          li
+            = link_to "Your ratings", ratings_people_path
       ul.right
         - if user_signed_in?
           li.has-dropdown
