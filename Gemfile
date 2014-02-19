@@ -4,9 +4,6 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.1'
 gem 'dotenv-rails'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-
 gem 'predictionio'
 gem 'devise'
 gem 'omniauth'
@@ -43,8 +40,12 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :production do
+  gem 'pg'
+end
 
 group :development do
+  gem 'sqlite3'
   gem 'pry'
 end
 # Use ActiveModel has_secure_password
