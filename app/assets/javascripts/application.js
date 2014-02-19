@@ -25,6 +25,7 @@ rating.raty({
   half: false,
   size: 48,
   width: false,
+  score: rating.data('rating'),
   starOn: rating.data('starOn'),
   starHalf: rating.data('starHalf'),
   starOff: rating.data('starOff'),

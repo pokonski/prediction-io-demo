@@ -1,11 +1,9 @@
 class PeopleController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_person, only: [:show, :edit, :update, :destroy]
+  before_action :set_person, only: [:show, :vote]
   before_filter :identify_user
 
-  # GET /persons
-  # GET /persons.json
-  def index
+  def random
     ignored = ENV["IGNORED_UIDS"]
     ignored = ignored ? ignored.split(",") : []
 
@@ -25,65 +23,14 @@ class PeopleController < ApplicationController
     end
   end
 
-  # GET /persons/1
-  # GET /persons/1.json
   def show
-  end
 
-  # GET /persons/new
-  def new
-    @person = Person.new
-  end
-
-  # GET /persons/1/edit
-  def edit
-  end
-
-  # POST /persons
-  # POST /persons.json
-  def create
-    @person = Person.new(person_params)
-
-    respond_to do |format|
-      if @person.save
-        format.html { redirect_to @person, notice: 'Person was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @person }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @person.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /persons/1
-  # PATCH/PUT /persons/1.json
-  def update
-    respond_to do |format|
-      if @person.update(person_params)
-        format.html { redirect_to @person, notice: 'Person was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @person.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /persons/1
-  # DELETE /persons/1.json
-  def destroy
-    @person.destroy
-    respond_to do |format|
-      format.html { redirect_to people_url }
-      format.json { head :no_content }
-    end
   end
 
   def vote
-    @person = Person.where(uid: params[:id]).first
-
-    Rating.create number: params[:value], person_uid: @person.uid,
-      user_id: current_user.id
+    rating = Rating.where(person_uid: @person.uid, user_id: current_user.id).first_or_initialize
+    rating.number = params[:value]
+    rating.save
 
     PREDICTIONIO.arecord_action_on_item("rate", @person.uid, pio_rate: params[:value].to_i)
 
@@ -121,7 +68,7 @@ class PeopleController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person
-      @person = Person.find(params[:id])
+      @person = Person.find_by_uid(params[:id])
     end
 
     def identify_user

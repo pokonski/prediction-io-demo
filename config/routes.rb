@@ -1,12 +1,13 @@
 Gallery::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  resources :people do
+  resources :people, only: [:index, :show] do
     member do
       get 'vote'
     end
 
     collection do
       get 'fetch_friends'
+      get 'random'
     end
   end
 

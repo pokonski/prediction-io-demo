@@ -1,0 +1,26 @@
+br
+br
+br
+- if @person
+  .row
+    .small-4.columns.text-centered
+      h3 People rated similarly:
+      br
+      ul.small-block-grid-2
+        - similar_people(@person.uid).each do |person|
+          li
+            = link_to image_tag(person.image_path), person_path(person.uid)
+    .small-7.columns
+      .row
+        .small-8.large-centered.columns.text-centered
+          br
+          img.face style="max-height: 400px;" src=@person.image_path
+      .row
+        .small-8.large-centered.columns.text-centered
+          #rating data-url=vote_person_path(id: @person.uid, format: :json) data-star-off=image_path("star-off.png") data-star-on=image_path("star-on.png") data-enabled=false data-star-half=image_path("star-half.png")
+- else
+  .row
+    .small-8.large-centered.columns.text-centered
+      .alert-box.alert
+        p Ooops! You checked them all out!
+        p Come back later to see if we have some more pretty faces for you.

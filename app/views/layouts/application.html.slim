@@ -17,7 +17,7 @@ body
         li style="display: none"
           = link_to "Fetch friends", fetch_friends_people_path
         li
-          = link_to "Get lucky", people_path, class: 'button large success'
+          = link_to "Show random", random_people_path, class: 'button large success'
 
       ul.right
         - if user_signed_in?
