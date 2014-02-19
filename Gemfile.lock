@@ -1,5 +1,5 @@
 GEM
-  remote: http://192.168.1.12:9292/
+  remote: https://rubygems.org/
   specs:
     access-granted (0.1.0)
     actionmailer (4.0.1)
@@ -95,6 +95,7 @@ GEM
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
     orm_adapter (0.4.0)
+    pg (0.17.1)
     polyglot (0.3.3)
     predictionio (0.6.0)
     pry (0.9.12.4)
@@ -171,6 +172,7 @@ DEPENDENCIES
   koala (~> 1.8.0rc1)
   omniauth
   omniauth-facebook
+  pg
   predictionio
   pry
   rails (= 4.0.1)
