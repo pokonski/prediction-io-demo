@@ -16,8 +16,6 @@ body
       ul.left
         li style="display: none"
           = link_to "Fetch friends", fetch_friends_people_path
-        li
-          = link_to "Show random", random_people_path, class: 'button large success'
 
       ul.right
         - if user_signed_in?
@@ -32,5 +30,10 @@ body
             = link_to "Sign in using Facebook", user_omniauth_authorize_path(:facebook)
   - if flash[:notice]
     .alert-box.success = flash[:notice]
-  = yield
+  .row
+    .large-12.columns.text-centered
+      = link_to "Show random", random_people_path, class: 'button large success'
+  .row
+    .large-12.columns
+      = yield
   = javascript_include_tag "application"
