@@ -3,14 +3,7 @@ br
 br
 - if @person
   .row
-    .small-4.columns.text-centered
-      h3 People rated similarly:
-      br
-      ul.small-block-grid-2
-        - similar_people(@person.uid).each do |person|
-          li
-            = link_to image_tag(person.image_path), person_path(person.uid)
-    .small-7.columns
+    .small-12.columns
       .row
         .small-8.large-centered.columns.text-centered
           br
@@ -18,6 +11,14 @@ br
       .row
         .small-8.large-centered.columns.text-centered
           #rating data-url=vote_person_path(id: @person.uid, format: :json) data-star-off=image_path("star-off.png") data-star-on=image_path("star-on.png") data-enabled=false data-star-half=image_path("star-half.png")
+  .row
+    .small-12.columns.text-centered
+      h3 People rated similarly:
+      br
+      ul.small-block-grid-6
+        - similar_people(@person.uid).each do |person|
+          li
+            = link_to image_tag(person.image_path), person_path(person.uid)
 - else
   .row
     .small-8.large-centered.columns.text-centered

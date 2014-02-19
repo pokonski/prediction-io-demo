@@ -15,7 +15,6 @@ class PeopleController < ApplicationController
 
     @person = @person.first
     if @person
-      PREDICTIONIO.arecord_action_on_item("view", @person.uid)
       View.where(person_uid: @person.uid, user_id: current_user.id).first_or_create
     end
   end
