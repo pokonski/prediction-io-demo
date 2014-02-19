@@ -62,7 +62,7 @@ class PeopleController < ApplicationController
   end
 
   def top
-    ratings = Rating.group(:person_uid).having("avg(number) > 3.5").order("avg(number) DESC").limit(10).average(:number)
+    ratings = Rating.group(:person_uid).having("avg(number) > 3.5").order("avg(number) DESC").limit(30).average(:number)
     @list = []
     people = Person.where(uid: ratings.keys)
     people.each do |person|
