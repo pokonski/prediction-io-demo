@@ -2,6 +2,9 @@
   .small-12.columns.text-centered
     h3 Your ratings
     br
+    dl.sub-nav
+      dd class=("active" if params[:sort] == "recent" || params[:sort].nil? ) = link_to "Recent", ratings_people_path(sort: 'recent')
+      dd class=("active" if params[:sort] == "rating") = link_to "Rating desceding", ratings_people_path(sort: 'rating')
     ul.small-block-grid-5
       - @people.each do |person|
         li
