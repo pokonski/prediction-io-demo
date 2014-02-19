@@ -1,7 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    access-granted (0.1.0)
     actionmailer (4.0.1)
       actionpack (= 4.0.1)
       mail (~> 2.5.4)
@@ -162,7 +161,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  access-granted
   coffee-rails (~> 4.0.0)
   devise
   dotenv-rails
