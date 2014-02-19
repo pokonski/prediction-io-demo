@@ -1,0 +1,8 @@
+.row
+  .small-12.columns.text-centered
+    h3 People rated similarly:
+    br
+    ul.small-block-grid-5
+      - @list.each do |pair|
+        li
+          = link_to image_tag(pair.first.image_path), person_path(pair.first.uid)

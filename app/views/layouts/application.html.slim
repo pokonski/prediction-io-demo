@@ -16,7 +16,8 @@ body
       ul.left
         li style="display: none"
           = link_to "Fetch friends", fetch_friends_people_path
-
+        li
+          = link_to "Top 10", top_people_path
       ul.right
         - if user_signed_in?
           li.has-dropdown

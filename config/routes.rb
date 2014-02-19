@@ -8,6 +8,7 @@ Gallery::Application.routes.draw do
     collection do
       get 'fetch_friends'
       get 'random'
+      get 'top'
     end
   end
 
