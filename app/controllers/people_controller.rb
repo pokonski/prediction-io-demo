@@ -4,7 +4,7 @@ class PeopleController < ApplicationController
   before_filter :identify_user
 
   def ratings
-    @people = Person.joins(:ratings).order("ratings.created_at DESC")
+    @people = Person.joins(:ratings).where("ratings.user_id = ?", current_user.id).order("ratings.created_at DESC")
   end
 
   def random
